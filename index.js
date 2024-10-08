@@ -9,6 +9,7 @@ const students = [
 // 1. Log each student’s name and grade
 students.forEach((student) => console.log(student.name));
 students.forEach((student) => console.log(student.grade));
+students.forEach((student) => console.log(`${student.name}, ${student.grade}`));
 
 //Part 2: .filter
 //1. **Filter students with grades above 80**.
@@ -28,3 +29,67 @@ students
 students
   .filter((student) => student.age < 21)
   .forEach((student) => console.log(student.name));
+
+// ## Assignment 2: Practicing `forEach` and `filter` with Product Data
+
+// ### Array of Products:
+
+const products = [
+  { name: "Laptop", price: 1200, category: "Electronics", rating: 4.5 },
+  { name: "Phone", price: 800, category: "Electronics", rating: 4.7 },
+  { name: "Headphones", price: 150, category: "Accessories", rating: 4.3 },
+  { name: "Monitor", price: 300, category: "Electronics", rating: 4.6 },
+  { name: "Keyboard", price: 100, category: "Accessories", rating: 4.1 },
+  { name: "Chair", price: 250, category: "Furniture", rating: 4.0 },
+  { name: "Desk", price: 450, category: "Furniture", rating: 4.8 },
+];
+
+//### Part 1: Practice with `forEach`
+//1. **Display Product Details**: Log the name and price of each product.
+products.forEach((product) => console.log(product.name));
+products.forEach((product) => console.log(product.price));
+products.forEach((product) => console.log(`${product.name}, ${product.price}`));
+// 2. **Increase Price**: Increase the price of each product by 10% and log the updated products.
+products.forEach((product) => {
+  const newPrice = product.price * 1.1;
+  console.log(`${product.name}, ${newPrice}`); // to fixed -->
+});
+// 3. **Summarize Categories**: Use `forEach` to create a list of all unique categories in the products array.
+const categories = [];
+products.forEach((product) => {
+  if (!categories.includes(product.category)) {
+    categories.push(product.category);
+  }
+});
+console.log("Unique Categories:", categories);
+
+//### Part 2: Practice with `filter`
+// 1. **Filter by Category**: Create a new array that only includes products from the 'Electronics' category.
+
+const electronics = products.filter(
+  (product) => product.category === "Electronics"
+);
+console.log("Electronics:", electronics);
+
+// 2. **Filter by Price**: Filter products that cost more than $300 and store them in a new array.
+
+const expensiveProducts = products.filter((product) => product.price > 300);
+console.log("Expensive Products:", expensiveProducts);
+
+//3. **Highly Rated Products**: Filter products with a rating of 4.5 or above.
+const highRatings = products.filter((product) => product.rating >= 4.5);
+console.log("High Ratings:", highRatings);
+
+//### Part 3: Combined `forEach` and `filter`
+// 1. **Log Highly Rated Product Names**: Use `filter` to get the highly rated products (rating >= 4.5) and then use `forEach` to log only their names.
+products
+  .filter((product) => product.rating >= 4.5)
+  .forEach((product) => console.log(product.name));
+//2. **Affordable Electronics**: Use `filter` to find all the products in the 'Electronics' category that are priced below $1000. After filtering, use `forEach` to log their details.
+products
+  .filter((product) => product.price < 1000)
+  .forEach((product) =>
+    console.log(
+      `${product.name},${product.price}, ${product.category},${product.rating}`
+    )
+  );
